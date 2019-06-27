@@ -6526,16 +6526,40 @@ from bs4 import BeautifulSoup
 
 soup = BeautifulSoup(sample_page_source, 'html.parser')
 
-#print(soup.encode("utf-8"))
-
-#x = soup.find_all('a')
-
-#print(x)
-
 pricing = soup.find("div",{'class':'final-price'})
 
 price_only = pricing.text
 print(price_only)
 
+title = soup.find("div",{'class':'product-title'})
+
+brand = title.a.text
+
+product_name = title.h1.text
 
 
+#print(brand)
+print(product_name)
+
+
+#print(title_two)
+
+#name_select = title_two[0].get_text()
+
+#print(name_select)
+
+#for h in title:
+#        brand = h.find('a')
+#        name = h.find('h1')
+#
+##brand_only = brand.text
+##name_only = name.text
+#
+##print(brand)
+##print(name)
+#
+#
+#
+#print(title)
+#
+#

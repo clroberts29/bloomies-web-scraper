@@ -6532,9 +6532,10 @@ soup = BeautifulSoup(sample_page_source, 'html.parser')
 
 #print(x)
 
-pricing = soup.find_all("div",{'class':'final-price'},{'span class': ''})
+pricing = soup.find("div",{'class':'final-price'})
 
-print(pricing)
+price_only = pricing.text
+print(price_only)
 
 
 

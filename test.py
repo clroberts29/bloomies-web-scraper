@@ -6533,12 +6533,12 @@ print(price_only)
 
 title = soup.find("div",{'class':'product-title'})
 
-brand = title.a.text
+brand = (title.a.text).strip()
 
-product_name = title.h1.text
+product_name = (title.h1.text).strip()
 
 
-#print(brand)
+print(brand)
 print(product_name)
 
 

@@ -13135,7 +13135,19 @@ for p in coo:
 
 print(coo)
 
+prod_dim = ''
 
+
+for g in attributes:
+        if g.find("W x ") > 0:
+                prod_dim = g
+
+prod_dim = prod_dim.partition("\n")
+prod_dim = prod_dim[2].split("\n")
+prod_dim = prod_dim[0]
+
+
+print(prod_dim)
 
 
         

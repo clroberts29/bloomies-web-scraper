@@ -4,6 +4,7 @@ from requests.exceptions import RequestException
 from contextlib import closing
 from bs4 import BeautifulSoup
 import time
+import csv
 
 
 
@@ -75,16 +76,51 @@ while x < 3388860:
                         coo = p
 
         print("item " + x + " coo: " + coo)
+        
+        prod_dim = ''
+
+
+        for g in attributes:
+                if g.find("W x ") > 0:
+                        prod_dim = g
+
+        prod_dim = prod_dim.partition("\n")
+        prod_dim = prod_dim[2].split("\n")
+        prod_dim = prod_dim[0]
+
+
+        print(prod_dim)
+
+        csv_file_path = "data\data.csv"
+
+        csv_headers = ["item_number", "brand", "product_name", "price", "coo", "prod_dim"]
+
+        with open(csv_file_path, "w") as csv_file:
+            writer = csv.DictWriter(csv_file, fieldnames=csv_headers)
+            writer.writeheader()
+            writer.writerow({
+                "item_number": x,
+                "brand": brand,
+                "product_name": produce_name,
+                "price": price_only,
+                "coo": coo,
+                "prod_dim": prod_dim     
+})      
+
+
 
         x = int(x)
 
         x = x+1
+
+
+
+
     except:
         x = int(x)
 
         x = x + 1
 
-breakpoint()
 
 
 

@@ -13092,7 +13092,7 @@ sample_page_source_two = """
 
 from bs4 import BeautifulSoup
 
-soup = BeautifulSoup(sample_page_source_two, 'html.parser')
+soup = BeautifulSoup(sample_page_source, 'html.parser')
 
 pricing = soup.find("div",{'class':'final-price'})
 

@@ -12,69 +12,77 @@ header = {'user-agent': 'Mozilla/5.0'}
 
 x=3388848
 
-while x < 3388850:
+while x < 3388860:
+    try:
 
- 
-    x = str(x)
-
-
-    website = 'https://www.bloomingdales.com/shop/product/burberry-icon-stripe-gauze-scarf?ID=' + x + '&CategoryID=1005369#fn=ppp%3Dundefined%26sp%3DNULL%26rId%3DNULL%26spc%3D366%26spp%3D2%26pn%3D1%7C4%7C2%7C366%26rsid%3Dundefined%26smp%3DmatchNone'
+        
+        x = str(x)
 
 
-
-
-    raw_html = requests.get(website, headers=header)
-
-    html = raw_html.content
-
-
-    soup = BeautifulSoup(html, 'html.parser')
-
-
-    pricing = soup.find("div",{'class':'final-price'})
-
-    price_only = pricing.text
-    print(price_only)
-
-    title = soup.find("div",{'class':'product-title'})
-
-    brand = (title.a.text).strip()
-
-    product_name = (title.h1.text).strip()
-
-
-    print(brand)
-    print(product_name)
+        website = 'https://www.bloomingdales.com/shop/product/burberry-icon-stripe-gauze-scarf?ID=' + x + '&CategoryID=1005369#fn=ppp%3Dundefined%26sp%3DNULL%26rId%3DNULL%26spc%3D366%26spp%3D2%26pn%3D1%7C4%7C2%7C366%26rsid%3Dundefined%26smp%3DmatchNone'
 
 
 
-    prod_attr = soup.find_all("div",{"class":"accordion-body"})
 
-    attributes = []
-    for p in prod_attr:
-            attribute = p.ul.text
-            attributes.append(attribute)
+        raw_html = requests.get(website, headers=header)
+
+        html = raw_html.content
 
 
-    coo = ""
+        soup = BeautifulSoup(html, 'html.parser')
 
 
-    for p in attributes:
-            if p.find("Made in") > 0:
-                    coo = p
+        pricing = soup.find("div",{'class':'final-price'})
 
-    coo = coo.partition("\n")
-    coo = coo[2].split("\n")
+        price_only = pricing.text
 
-    for p in coo:
-            if "Made in" in p:
-                    coo = p
+        price_only = price_only.strip()
 
-    print(coo)
+        print("item " + x + " price: " + price_only)
 
-    x = int(x)
+        title = soup.find("div",{'class':'product-title'})
 
-    x = x+1
+        brand = (title.a.text).strip()
+
+        product_name = (title.h1.text).strip()
+
+
+        print("item " + x + " brand: " + brand)
+        print("item " + x + " product name: " + product_name)
+
+
+
+        prod_attr = soup.find_all("div",{"class":"accordion-body"})
+
+        attributes = []
+        for p in prod_attr:
+                attribute = p.ul.text
+                attributes.append(attribute)
+
+
+        coo = ""
+
+
+        for p in attributes:
+                if p.find("Made in") > 0:
+                        coo = p
+
+        coo = coo.partition("\n")
+        coo = coo[2].split("\n")
+
+        for p in coo:
+                if "Made in" in p:
+                        coo = p
+
+        print("item " + x + " coo: " + coo)
+
+        x = int(x)
+
+        x = x+1
+    except:
+        x = int(x)
+
+        x = x + 1
 
 breakpoint()
 

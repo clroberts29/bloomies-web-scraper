@@ -91,21 +91,30 @@ while x < 3388860:
 
         print(prod_dim)
 
-        csv_file_path = "data\data.csv"
+        csv_file_path = "C:\\Users\\croberts\\Documents\\GitHub\\bloomies-web-scraper\\data\data.csv"
+        
 
         csv_headers = ["item_number", "brand", "product_name", "price", "coo", "prod_dim"]
+        #csv_row = [x, brand, product_name, price_only, coo, prod_dim]
 
-        with open(csv_file_path, "w") as csv_file:
-            writer = csv.DictWriter(csv_file, fieldnames=csv_headers)
-            writer.writeheader()
-            writer.writerow({
-                "item_number": x,
-                "brand": brand,
-                "product_name": produce_name,
-                "price": price_only,
-                "coo": coo,
-                "prod_dim": prod_dim     
-})      
+        csv_row = ["323456", "Burberry", "test style", "349.99", "Made In China", "27 x 27"]
+
+
+        with open(csv_file_path, 'a') as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow(csv_row)
+        csv_file.close()
+
+        #with open(csv_file_path, "a") as csv_file:
+        #    writer = csv.DictWriter(csv_file, fieldnames=csv_headers)
+        #    writer.writerow({
+        #        "item_number": x,
+        #        "brand": brand,
+        #        "product_name": product_name,
+        #        "price": price_only,
+        #        "coo": coo,
+        #        "prod_dim": prod_dim     
+        #})     
 
 
 
@@ -122,8 +131,17 @@ while x < 3388860:
         x = x + 1
 
 
+csv_file_path = "C:\\Users\\croberts\\Documents\\GitHub\\bloomies-web-scraper\\data\data.csv"
 
+csv_headers = ["item_number", "brand", "product_name", "price", "coo", "prod_dim"]
+#csv_row = [x, brand, product_name, price_only, coo, prod_dim]
+csv_row = ["323456", "Burberry", "test style", "349.99", "Made In China", "27 x 27"]
+with open(csv_file_path, 'a') as csv_file:
+    writer = csv.writer(csv_file)
+    writer.writerow(csv_row)
+csv_file.close()
 
+#breakpoint()
 
 
 

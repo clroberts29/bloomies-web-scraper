@@ -5,6 +5,8 @@ from contextlib import closing
 from bs4 import BeautifulSoup
 import time
 import csv
+import OpenSSL
+
 
 
 
@@ -71,8 +73,13 @@ while x < 3388860:
         coo = coo.partition("\n")
         coo = coo[2].split("\n")
 
+        #for p in coo:
+        #    if "Made in" in p:
+        #        coo = p
+
+
         for p in coo:
-            if "Made in" in p:
+            if ("Made in" in p or "imported" in p):
                 coo = p
 
         print("item " + x + " coo: " + coo)
@@ -90,6 +97,17 @@ while x < 3388860:
 
         print(prod_dim)
 
+        content =  ''
+
+        for k in attributes:
+                if ("silk" in k or "cotton" in k or "wool" in k or "poly" in k or "modal" in k or "viscose" in k or "rayon" in k):
+                        content = k
+        
+        content = content.text
+
+        print("item " + x + " content: " + content)
+        
+        
         csv_file_path = "C:\\Users\\croberts\\Documents\\GitHub\\bloomies-web-scraper\\data\data.csv"
         
 
@@ -104,16 +122,16 @@ while x < 3388860:
         #    writer.writerow(csv_row)
         #csv_file.close()
 
-        #with open(csv_file_path, "a") as csv_file:
-        #    writer = csv.DictWriter(csv_file, fieldnames=csv_headers)
-        #    writer.writerow({
-        #        "item_number": x,
-        #        "brand": brand,
-        #        "product_name": product_name,
-        #        "price": price_only,
-        #        "coo": coo,
-        #        "prod_dim": prod_dim     
-        #})     
+        with open(csv_file_path, "w") as csv_file:
+            writer = csv.DictWriter(csv_file, fieldnames=csv_headers)
+            writer.writerow({
+                "item_number": x,
+                "brand": brand,
+                "product_name": product_name,
+                "price": price_only,
+                "coo": coo,
+                "prod_dim": prod_dim     
+        })     
 
 
 

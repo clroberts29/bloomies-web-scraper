@@ -8,20 +8,40 @@ import csv
 import OpenSSL
 
 
-
-x=3388848
-
 header = {'user-agent': 'Mozilla/5.0'}
 
-csv_headers = ["item_number", "brand", "product_name", "price", "coo", "prod_dim", "website", "category"]
+#website = input("Enter your web address:")
+
+website = "https://www.bloomingdales.com/shop/jewelry-accessories/womens-scarves-wraps?id=1005369&cm_sp=NAVIGATION-_-TOP_NAV-_-1005369-Accessories-Scarves-%26-Wraps"
+
+
+raw_html_list = requests.get(website, headers=header)
+
+html_list = raw_html_list.content
+
+soup_list = BeautifulSoup(html_list, 'html.parser')
+
+prodlist = []
+for idnums in soup_list.find_all('div'):
+    try:
+        idnumber = int(idnums.get('id'))
+        prodlist.append(idnumber)
+    
+    except:
+        pass
+
+
+
+
+
+csv_headers = ["item_number", "brand", "product_name", "price", "coo", "prod_dim", "content", "website", "category"]
 csv_file_path = "data\data.csv"
 
 with open(csv_file_path, "w") as csv_file:
         writer = csv.DictWriter(csv_file, fieldnames=csv_headers)
-        while x < 3388860:
+        for x in prodlist:
             try:
 
-                print("test")
                 x = str(x)
 
 
@@ -102,8 +122,10 @@ with open(csv_file_path, "w") as csv_file:
                 content =  ''
 
                 for k in attributes:
-                        if ("silk" in k or "cotton" in k or "wool" in k or "poly" in k or "modal" in k or "viscose" in k or "rayon" in k):
+                        if k.find("silk") > 0 or k.find("cotton") > 0 or k.find("wool") > 0 or k.find("poly") > 0 or k.find("modal") > 0 or k.find("viscose") > 0 or k.find("rayon") > 0:
                                 content = k
+
+
 
                 content = content.partition("\n")
                 content = content[2].split("\n")
@@ -149,15 +171,16 @@ with open(csv_file_path, "w") as csv_file:
                         "price": price_only,
                         "coo": coo,
                         "prod_dim": prod_dim,
+                        "content": content,
                         "website": website,
                         "category": category_string  
                 })     
 
 
 
-                x = int(x)
+                #x = int(x)
 
-                x = x+1
+                #x = x+1
 
     
 
@@ -166,9 +189,10 @@ with open(csv_file_path, "w") as csv_file:
 
 
             except AttributeError:
-                  x = int(x)
+                  #x = int(x)
 
-                  x = x + 1
+                  #x = x + 1
+                pass
 
         #csv_file_path = "C:\\Users\\croberts\\Documents\\GitHub\\bloomies-web-scraper\\data\data.csv"
         #

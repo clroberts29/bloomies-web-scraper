@@ -136,6 +136,7 @@ with open(csv_file_path, "w") as csv_file:
 
                 category_string = category_string[1]
 
+# Write the attributes to the CSV file
                 writer.writerow({
                         "item_number": x,
                         "brand": brand,

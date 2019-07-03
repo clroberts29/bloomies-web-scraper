@@ -10,9 +10,13 @@ import OpenSSL
 
 header = {'user-agent': 'Mozilla/5.0'}
 
-#website = input("Enter your web address:")
+cat_id = input("Enter the Bloomingdale's category id number:")
 
-website = "https://www.bloomingdales.com/shop/jewelry-accessories/womens-scarves-wraps?id=1005369&cm_sp=NAVIGATION-_-TOP_NAV-_-1005369-Accessories-Scarves-%26-Wraps"
+cat_id = str(cat_id)
+
+page = '1'
+
+website = "https://www.bloomingdales.com/shop/?id=" + cat_id
 
 
 raw_html_list = requests.get(website, headers=header)

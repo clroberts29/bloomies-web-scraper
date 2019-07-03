@@ -13094,6 +13094,8 @@ from bs4 import BeautifulSoup
 
 soup = BeautifulSoup(sample_page_source, 'html.parser')
 
+breakpoint()
+
 pricing = soup.find("div",{'class':'final-price'})
 
 price_only = pricing.text
@@ -13149,7 +13151,16 @@ prod_dim = prod_dim[0]
 
 print(prod_dim)
 
+category_all = soup.find_all("div",{'class':'product-details-feature'})
 
-        
+category = []
+
+for h in category_all:
+        category_text = h.a.text
+        category.append(category_text)
+
+
+             
+
 
 breakpoint()

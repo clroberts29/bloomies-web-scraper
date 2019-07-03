@@ -18,7 +18,7 @@ def clean_up(product_data):
     return product_data
 
 # call and define target category page
-cat_id = input("Enter the Bloomingdale's category id number:")
+cat_id = input("Enter the Bloomingdale's category id number (must be a page with products listed):")
 
 cat_id = str(cat_id)
 

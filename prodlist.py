@@ -8,9 +8,9 @@ import csv
 
 header = {'user-agent': 'Mozilla/5.0'}
 
-website = input("Enter your web address:")
+#website = input("Enter your web address:")
 
-#website = "https://www.bloomingdales.com/shop/jewelry-accessories/womens-scarves-wraps?id=1005369&cm_sp=NAVIGATION-_-TOP_NAV-_-1005369-Accessories-Scarves-%26-Wraps"
+website = "https://www.bloomingdales.com/shop/jewelry-accessories/womens-scarves-wraps?id=1005369&cm_sp=NAVIGATION-_-TOP_NAV-_-1005369-Accessories-Scarves-%26-Wraps"
 
 
 raw_html = requests.get(website, headers=header)

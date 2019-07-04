@@ -11,7 +11,11 @@ Scrapes Bloomingdales.com's website for product data.
 
  Environment Setup Create and activate a new Anaconda virtual environment:
 
- conda create -n stocks-env python -3.7 # (first time only) conda activate stocks-env From within the virtual environment, install the required packages below:
+ conda create -n stocks-env python -3.7 # (first time only) conda activate stocks-env From within the virtual environment, install the required packages below, but using the following python code:
+
+ '''
+ pip install -r requirements.txt
+ '''
 
   + csv
   + requests
